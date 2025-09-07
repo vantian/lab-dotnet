@@ -68,8 +68,10 @@ app.UseAuthorization();
 
 Ketika request masuk ke endpoint yang diberi atribut `RequireAuthorization` atau policy tertentu, middleware akan:
 
-- Mengecek header Authorization dan memvalidasi token JWT menggunakan konfigurasi di `AddJwtBearer`.
-- Mengecek claim permission pada token sesuai policy yang ditentukan di `AddAuthorization`.
+- Mengecek header Authorization dan memvalidasi token JWT menggunakan konfigurasi di `AddJwtBearer` pada `Program.cs`.
+  `builder.Services.AddAuthentication("Bearer").AddJwtBearer(opt =>.....`
+- Mengecek claim permission pada token sesuai policy yang ditentukan di `AddAuthorization` pada `Program.cs`.
+  `builder.Services.AddAuthorization(options =>`
 - Jika token valid dan claim sesuai, request diteruskan ke endpoint. Jika tidak, akan dikembalikan error 401/403.
 
 ## Penjelasan SymmetricSecurityKey dan SigningCredentials
