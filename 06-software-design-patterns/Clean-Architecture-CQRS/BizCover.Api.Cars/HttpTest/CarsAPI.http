@@ -1,0 +1,41 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+# ==========================================
+#@baseUrl = http://localhost:32769
+@baseUrl = https://localhost:5001
+
+###
+# Get All Cars
+GET {{baseUrl}}/api/cars HTTP/1.1
+
+###
+# Get All Discounted Cars
+@carIds = ids=1&ids=2&ids=3
+GET {{baseUrl}}/api/cars/discount?{{carIds}} HTTP/1.1
+
+###
+# Add new car
+POST {{baseUrl}}/api/cars HTTP/1.1
+Content-Type: application/json
+{
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2005,
+  "colour": "Blue",
+  "price": 25000,
+  "countryManufactured": "Japan"
+}
+
+###
+# Update existing car
+@carId = 5
+PUT {{baseUrl}}/api/cars HTTP/1.1
+Content-Type: application/json
+{
+  "id": {{carId}},
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2000,
+  "colour": "Red",
+  "price": 24000,
+  "countryManufactured": "Japan"
+}
